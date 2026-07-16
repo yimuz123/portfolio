@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李逸凡 · AI 作品集</title>
+<style>
+  :root{
+    --bg:#0d0f14;
+    --card:#171a21;
+    --card2:#1e2230;
+    --line:#2a2f3d;
+    --ink:#e8eaf0;
+    --sub:#9aa1b2;
+    --accent:#ff8a4c;
+    --accent2:#6ea8fe;
+    --ok:#5bd6a0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  /* Hero */
+  .hero{
+    padding:64px 0 48px;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 400px at 20% -10%,rgba(255,138,76,.14),transparent 60%),
+               radial-gradient(700px 380px at 90% 0%,rgba(110,168,254,.12),transparent 55%);
+  }
+  .name{font-size:44px;font-weight:800;letter-spacing:.5px}
+  .name .dot{color:var(--accent)}
+  .tag{margin-top:16px;font-size:19px;color:var(--ink);font-weight:600;line-height:1.5}
+  .tag b{color:var(--accent)}
+  .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    background:var(--card2);border:1px solid var(--line);
+    padding:7px 14px;border-radius:999px;font-size:13.5px;color:var(--sub)
+  }
+  .chip b{color:var(--ink)}
+
+  /* metrics */
+  .metrics{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    margin:38px 0 8px;
+  }
+  .metric{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;text-align:center;
+  }
+  .metric .num{font-size:30px;font-weight:800;color:var(--accent)}
+  .metric .num.b{color:var(--accent2)}
+  .metric .lab{font-size:13px;color:var(--sub);margin-top:4px}
+
+  /* sections */
+  section{padding:46px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .sec-head .bar{width:4px;height:22px;background:var(--accent);border-radius:2px}
+  .sec-head h2{font-size:24px;font-weight:800}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .proj{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:24px;transition:.2s;position:relative;overflow:hidden
+  }
+  .proj:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .proj .idx{position:absolute;top:16px;right:20px;font-size:52px;font-weight:800;color:rgba(255,255,255,.04)}
+  .proj h3{font-size:19px;font-weight:800;margin-bottom:6px}
+  .proj .kind{font-size:12.5px;color:var(--accent2);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  .proj p{color:var(--sub);font-size:14.5px;margin-top:12px}
+  .proj ul{margin:14px 0 0;padding-left:0;list-style:none}
+  .proj li{color:var(--ink);font-size:14px;padding:4px 0 4px 20px;position:relative}
+  .proj li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+  .proj .link{display:inline-block;margin-top:16px;color:var(--accent2);font-size:13.5px;text-decoration:none;border-bottom:1px dashed var(--accent2)}
+  .badge{display:inline-block;margin-top:14px;background:rgba(91,214,160,.12);color:var(--ok);
+    border:1px solid rgba(91,214,160,.3);padding:4px 10px;border-radius:8px;font-size:12.5px;font-weight:600}
+
+  /* growth */
+  .growth{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
+  .growth .row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+  .growth .big{flex:1;min-width:180px;background:var(--card2);border-radius:14px;padding:20px}
+  .growth .big .n{font-size:34px;font-weight:800;color:var(--accent)}
+  .growth .big .t{font-size:13.5px;color:var(--sub);margin-top:4px}
+  .growth p{color:var(--sub);font-size:14.5px;margin-top:6px}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .skg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .skg h4{font-size:14px;color:var(--accent);margin-bottom:12px;font-weight:800}
+  .skg .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .skg .tags span{background:var(--card2);border:1px solid var(--line);padding:5px 11px;border-radius:8px;font-size:13px;color:var(--ink)}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--sub);font-size:13.5px}
+  footer .ai{margin-top:8px;font-size:12px;opacity:.6}
+
+  @media(max-width:720px){
+    .grid,.skills{grid-template-columns:1fr}
+    .metrics{grid-template-columns:1fr 1fr}
+    .name{font-size:34px}
+    .tag{font-size:17px}
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="wrap">
+      <div class="name">李逸凡<span class="dot">.</span></div>
+      <div class="tag">会 <b>Vibe Coding</b> 的 AI 复合型人才 —— 独立落地 <b>3 个可运行 AI 项目</b>，逆向 Claude 客户端，小红书 <b>1 个月 AI 自动化涨粉 3000</b></div>
+      <div class="meta">
+        <span class="chip">📱 <b>15695257780</b></span>
+        <span class="chip">✉️ <b>foxyimuz@gmail.com</b></span>
+        <span class="chip">🎓 大专 · 室内设计</span>
+        <span class="chip">💰 期望 <b>6000起</b></span>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num">3</div><div class="lab">从0独立落地的AI项目</div></div>
+        <div class="metric"><div class="num b">3000</div><div class="lab">小红书自然涨粉</div></div>
+        <div class="metric"><div class="num">&lt;1</div><div class="lab">个月冷启动周期</div></div>
+        <div class="metric"><div class="num b">3</div><div class="lab">设计/技术/运营一人打通</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section>
+      <div class="sec-head"><div class="bar"></div><h2>核心项目</h2></div>
+      <div class="grid">
+
+        <div class="proj">
+          <div class="idx">01</div>
+          <div class="kind">Web 全栈 · 本地优先</div>
+          <h3>C=a(1-sinθ) 本地 AI 工作台</h3>
+          <p>仿 Claude 交互体验的本地全栈聊天工作台，一个人从前端界面到后端服务独立完成。</p>
+          <ul>
+            <li>支持 OAuth / Cookie / 第三方 API 三种接入模式</li>
+            <li>会话同步、本地 JSON 存储、媒体缓存</li>
+            <li>Artifacts / 模型切换 / 代理与端口配置</li>
+            <li>基于 Node.js，本地 HTTP 服务 + API 代理</li>
+          </ul>
+          <span class="badge">✓ 可填 API Key 直接对话</span><br>
+          <a class="link" href="https://github.com/yimuz123/C-a-1-sin-theta" target="_blank">github.com/yimuz123/C-a-1-sin-theta ↗</a>
+        </div>
+
+        <div class="proj">
+          <div class="idx">02</div>
+          <div class="kind">Android · 桌面陪伴</div>
+          <h3>Clawd 桌宠 App</h3>
+          <p>独立开发的桌面陪伴宠物应用，验证桌面存在感与轻量互动反馈。</p>
+          <ul>
+            <li>Android 原生桌宠，可挂桌面长期陪伴</li>
+            <li>内置 AI 对话能力</li>
+            <li>需求拆解、交互设计、开发一人完成</li>
+          </ul>
+          <span class="badge">✓ 可填 API Key 进行对话</span><br>
+          <a class="link" href="https://github.com/yimuz123/clawd-pet-android" target="_blank">github.com/yimuz123/clawd-pet-android ↗</a>
+        </div>
+
+        <div class="proj">
+          <div class="idx">03</div>
+          <div class="kind">逆向 · 接口分析</div>
+          <h3>Claude 官方 App 客户端逆向</h3>
+          <p>使用 Codex 完成 Claude 官方 App 的客户端协议逆向与接口分析（仅客户端壳层，非模型本体）。</p>
+          <ul>
+            <li>客户端协议逆向、接口抓取与分析</li>
+            <li>产出可运行的可填 Key 聊天版本</li>
+            <li>体现对客户端-服务端通信的理解</li>
+          </ul>
+          <span class="badge">✓ 可填 API Key 进行对话</span>
+        </div>
+
+        <div class="proj">
+          <div class="idx">+</div>
+          <div class="kind">Agent 部署</div>
+          <h3>OpenClaw / Hermes 等 Agent</h3>
+          <p>熟悉主流开源 AI Agent 项目的部署与使用，能把 Agent 工具链搭起来跑通实际任务。</p>
+          <ul>
+            <li>OpenClaw 部署与运行</li>
+            <li>Hermes 等 Agent 框架实操</li>
+            <li>Claude Code / OpenAI Codex 日常工作流</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="bar"></div><h2>AI 内容运营实战</h2></div>
+      <div class="growth">
+        <div class="row">
+          <div class="big"><div class="n">≈3000</div><div class="t">项目号自然涨粉</div></div>
+          <div class="big"><div class="n">≈1000</div><div class="t">自用号涨粉</div></div>
+          <div class="big"><div class="n">&lt;1个月</div><div class="t">冷启动周期</div></div>
+        </div>
+        <p><b style="color:var(--ink)">小红书 AI 自动化运营项目</b> —— 用 Claude 搭建自动化流程运营小红书账号，无团队、无投流，不到 1 个月自然涨粉约 3000。因模式效果突出引发大量模仿，平台随后针对性收紧规则，账号被封两月后停止运营。可提供粉丝增长与评论反馈截图作为证明。</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><div class="bar"></div><h2>技能</h2></div>
+      <div class="skills">
+        <div class="skg"><h4>AI 开发</h4><div class="tags">
+          <span>Vibe Coding</span><span>Claude Code</span><span>OpenAI Codex</span><span>大模型 API 接入</span><span>Prompt 工程</span><span>工作流搭建</span>
+        </div></div>
+        <div class="skg"><h4>Agent 部署</h4><div class="tags">
+          <span>OpenClaw</span><span>Hermes</span>
+        </div></div>
+        <div class="skg"><h4>逆向分析</h4><div class="tags">
+          <span>客户端协议逆向</span><span>接口分析</span>
+        </div></div>
+        <div class="skg"><h4>内容 & 设计</h4><div class="tags">
+          <span>小红书增长</span><span>AI 内容生成</span><span>数据复盘</span><span>Photoshop</span><span>Illustrator</span><span>设计审美</span>
+        </div></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      设计审美 + AI 技术 + 内容运营 · 一个人顶一个小团队的三个角色<br>
+      <span class="ai">本作品集内容真实可验证 · 项目均可提供 GitHub 源码与运行演示</span>
+    </div>
+  </footer>
+</body>
+</html>
